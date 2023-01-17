@@ -20,4 +20,10 @@ fn main() {
         day2::Part1Solution::new("/Users/zachcoleman/aoc-2022/src/day2/input.txt".to_string())
             .solution();
     println!("score: {}", sol.output.to_string());
+    let sol =
+        day2::Part2Solution::new("/Users/zachcoleman/aoc-2022/src/day2/input.txt".to_string())
+            .solution();
+    println!("score: {}", sol.output.to_string());
+
+    // day3 solutions
 }
