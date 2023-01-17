@@ -1,4 +1,5 @@
 mod day1;
+mod day2;
 
 fn main() {
     // day1 solutions
@@ -13,4 +14,10 @@ fn main() {
         "top 3 elves total cals: {:?}",
         sol.output.iter().sum::<usize>()
     );
+
+    // day2 solutions
+    let sol =
+        day2::Part1Solution::new("/Users/zachcoleman/aoc-2022/src/day2/input.txt".to_string())
+            .solution();
+    println!("score: {}", sol.output.to_string());
 }
