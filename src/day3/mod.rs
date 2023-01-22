@@ -1,4 +1,3 @@
-use std::collections::HashMap;
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 
@@ -17,19 +16,6 @@ impl Part1Solution {
     pub fn solution(self) -> Part1Solution {
         let file = File::open(&self.input).unwrap();
         let reader = BufReader::new(file);
-
-        // map of letters to ascii values
-        let mut map = HashMap::new();
-        for (p, c) in "abcdefghijklmnopqrstuvwxyz".chars().enumerate() {
-            map.insert(c, p + 1);
-        }
-        for (p, c) in "abcdefghijklmnopqrstuvwxyz"
-            .to_uppercase()
-            .chars()
-            .enumerate()
-        {
-            map.insert(c, p + 27);
-        }
 
         // array to track priorities of each letter
         let mut total: usize = 0;
@@ -93,19 +79,6 @@ impl Part2Solution {
     pub fn solution(self) -> Part2Solution {
         let file = File::open(&self.input).unwrap();
         let reader = BufReader::new(file);
-
-        // map of letters to ascii values
-        let mut map = HashMap::new();
-        for (p, c) in "abcdefghijklmnopqrstuvwxyz".chars().enumerate() {
-            map.insert(c, p + 1);
-        }
-        for (p, c) in "abcdefghijklmnopqrstuvwxyz"
-            .to_uppercase()
-            .chars()
-            .enumerate()
-        {
-            map.insert(c, p + 27);
-        }
 
         // array to track priorities of each letter
         let mut tracker = [0; 52];
