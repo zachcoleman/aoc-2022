@@ -4,6 +4,7 @@ mod day3;
 mod day4;
 mod day5;
 mod day6;
+mod day7;
 
 fn main() {
     // day1 solutions
@@ -66,6 +67,16 @@ fn main() {
     println!("total: {}", sol.output.to_string());
     let sol =
         day6::Part2Solution::new("/Users/zachcoleman/aoc-2022/src/day6/input.txt".to_string())
+            .solution();
+    println!("total: {}", sol.output.to_string());
+
+    // day7 solutions
+    let sol =
+        day7::Part1Solution::new("/Users/zachcoleman/aoc-2022/src/day7/input.txt".to_string())
+            .solution();
+    println!("total: {}", sol.output.to_string());
+    let sol =
+        day7::Part2Solution::new("/Users/zachcoleman/aoc-2022/src/day7/input.txt".to_string())
             .solution();
     println!("total: {}", sol.output.to_string());
 }
