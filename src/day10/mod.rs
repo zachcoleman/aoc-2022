@@ -79,9 +79,62 @@ impl Part2Solution {
         }
     }
     pub fn solution(self) -> Part2Solution {
+        let file = File::open(&self.input).unwrap();
+        let reader = BufReader::new(file);
+
+        let mut screen_ret = vec![];
+        let mut tick_counter: usize = 0;
+        let mut register: i32 = 1;
+        let mut queue: [Option<i32>; 2] = [None, None];
+        let mut queue_slice = &mut queue[0..1];
+
+        for line in reader.lines() {
+            let line = line.unwrap();
+            let line_items = line.split(" ").collect::<Vec<&str>>();
+
+            match &line_items[..] {
+                ["noop"] => {
+                    queue = [None, None];
+                    queue_slice = &mut queue[0..1];
+                }
+                ["addx", add_val] => {
+                    queue = [None, Some(add_val.parse::<i32>().unwrap())];
+                    queue_slice = &mut queue[0..2];
+                }
+                _ => {
+                    println!("Unknown cpu command");
+                }
+            }
+
+            for op in queue_slice.iter() {
+                // start cycle
+
+                // during cycle
+                if (tick_counter as i32 % 40) - 1 <= register
+                    && register <= (tick_counter as i32 % 40) + 1
+                {
+                    screen_ret.push("#");
+                } else {
+                    screen_ret.push(".");
+                }
+
+                // complete cycle
+                if op.is_some() {
+                    register += op.unwrap();
+                }
+                tick_counter += 1;
+            }
+        }
+
+        let ret: String = screen_ret
+            .chunks(40)
+            .map(|chunk| chunk.join(""))
+            .collect::<Vec<String>>()
+            .join("\n");
+
         Part2Solution {
             input: self.input,
-            output: self.output,
+            output: ret,
         }
     }
 }
