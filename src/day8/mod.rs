@@ -97,7 +97,11 @@ impl Part1Solution {
         for (i, row) in row_outer_max_grid.iter().enumerate() {
             for (j, col) in col_outer_max_grid.iter().enumerate() {
                 let tmp = row_grid[i][j];
-                match row.get(j - 1) {
+                // wrapping_sub will return usize::MAX if i == 0
+                // this is just a hack to avoid if/else statements
+                // and use match instead knowing row.get(usize::MAX)
+                // will return None
+                match row.get(j.wrapping_sub(1)) {
                     Some(x) => {
                         if tmp > *x {
                             visible_count += 1;
@@ -121,7 +125,7 @@ impl Part1Solution {
                         continue;
                     } // on outer edge
                 }
-                match col.get(i - 1) {
+                match col.get(i.wrapping_sub(1)) {
                     Some(x) => {
                         if tmp > *x {
                             visible_count += 1;
