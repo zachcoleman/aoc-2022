@@ -93,7 +93,6 @@ impl Part1Solution {
         for (ix, line) in reader.lines().enumerate() {
             let line = line.unwrap();
             let line_items = line.split(" ").collect::<Vec<&str>>();
-            // println!("{} -> {:?}", ix, line_items);
             match &line_items[..] {
                 // move to root
                 ["$", "cd", "/"] => {
@@ -149,7 +148,6 @@ impl Part1Solution {
                     panic!("unexpected input")
                 }
             }
-            // println!("{}", (*ptr).borrow().print());
         }
 
         // DFS traverse tree to find totals

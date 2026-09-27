@@ -38,7 +38,7 @@ impl Part1Solution {
             );
         }
 
-        // Dijkstra's algorithm
+        // Modified Dijkstra's algorithm
         let mut dist: Vec<Vec<usize>> = vec![vec![std::usize::MAX; grid[0].len()]; grid.len()];
         let mut visited: Vec<Vec<bool>> = vec![vec![false; grid[0].len()]; grid.len()];
         let mut queue: Vec<(usize, usize, usize)> = Vec::new();
@@ -114,7 +114,7 @@ impl Part2Solution {
             );
         }
 
-        // Dijkstra's algorithm
+        // Modified Dijkstra's algorithm
         let mut min = std::usize::MAX;
         let mut dist: Vec<Vec<usize>> = vec![vec![std::usize::MAX; grid[0].len()]; grid.len()];
         let mut visited: Vec<Vec<bool>> = vec![vec![false; grid[0].len()]; grid.len()];

@@ -2,6 +2,7 @@ mod day1;
 mod day10;
 mod day11;
 mod day12;
+mod day13;
 mod day2;
 mod day3;
 mod day4;
@@ -149,4 +150,64 @@ fn main() {
     println!("total: {}", sol.output.to_string());
 
     // day13 solutions
+    println!("===== day13 solutions =====");
+    let sol =
+        day13::Part1Solution::new("/Users/zachcoleman/aoc-2022/src/day13/tmp.txt".to_string())
+            .solution();
+    println!("total: {}", sol.output.to_string());
+    let sol =
+        day13::Part2Solution::new("/Users/zachcoleman/aoc-2022/src/day13/input.txt".to_string())
+            .solution();
+    println!("total: {}", sol.output.to_string());
+
+
+    #[derive(Debug)]
+    enum Tree<T> 
+    where T: Clone {
+        Node(T, Vec<Tree<T>>),
+        Leaf(T),
+    }
+    
+    impl<T> Tree<T> 
+    where T: Clone
+    {
+        fn new(value: T) -> Self {
+            Tree::Leaf(value)
+        }
+    
+        fn add_child(&mut self, value: T) {
+            match self {
+                Tree::Leaf(leaf) => {
+                    *self = Tree::Node(leaf.clone(), vec![Tree::Leaf(value)]);
+                },
+                Tree::Node(node_value, children) => {
+                    children.push(Tree::Leaf(value));
+                }
+            }
+        }
+    }
+
+    let mut tree = Tree::new(0);
+    tree.add_child(1);
+    tree.add_child(2);
+
+    match &mut tree {
+        Tree::Node(_, children) => {
+            children[0].add_child(3);
+            children[0].add_child(4);
+        },
+        Tree::Leaf(_) => {}
+    }
+
+    println!("{:?}", tree);
+
+    if let Tree::Node(_, children) = &mut tree {
+        if let Tree::Leaf(leaf) = &mut children[0] {
+            *leaf = 2;
+        }
+    }
+
+    println!("{:?}", tree);
+
+
 }
